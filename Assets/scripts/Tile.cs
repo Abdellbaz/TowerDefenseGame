@@ -8,7 +8,8 @@ public class Tile {
 
     public Tile(GameObject tile)
     {
-        this.tile = tile;
+        this.tile = MonoBehaviour.Instantiate(tile);
+        this.tile.gameObject.SetActive(false);
     }
 
     public void setPosition(float x, float y)

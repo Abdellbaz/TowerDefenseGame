@@ -10,14 +10,15 @@ public class Minion : MonoBehaviour {
     public GameObject GridManager;
 
     public int progress = 0;
-    Vector2 movement;
     public Vector2 posFromTarget;
     public float magFromTarget = 0;
+    Vector2 movement;
 
     private void Start()
     {
         GridManager = GameObject.FindGameObjectWithTag("GridManager");
     }
+
     float timer;
 
     // Update is called once per frame
