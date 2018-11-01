@@ -78,7 +78,7 @@ public class Grid {
             }
     }
     
-    //Use Vector4's for begin x/y and end x/y
+    /*Use Vector4's for begin x/y and end x/y*/
     public void FillRect(Sprite sprite, params Vector4[] positions)
     {
         for(int k = 0; k < positions.Length; k++)

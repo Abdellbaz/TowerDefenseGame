@@ -7,7 +7,7 @@ public class Minion : MonoBehaviour {
     public float speed = 20.0f;
     float health = 100;
 
-    public GameObject GridManager;
+    private GameObject GridManager;
 
     public int progress = 0;
     public Vector2 posFromTarget;
@@ -26,7 +26,11 @@ public class Minion : MonoBehaviour {
 
         timer += Time.deltaTime;
 
-        Vector2 destination = GridManager.GetComponent<GridManager>().waypointList[progress];
+        Vector2 destination = new Vector2();
+        if (GridManager.GetComponent<GridManager>().waypointList.Length >= progress)
+        {
+            destination = GridManager.GetComponent<GridManager>().waypointList[progress];
+        }
 
         float xdif = destination.x - transform.position.x;
         float ydif = destination.y - transform.position.y;

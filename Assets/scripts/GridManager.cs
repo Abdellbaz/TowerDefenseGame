@@ -23,8 +23,6 @@ public class GridManager : MonoBehaviour {
             new Vector4(5,3,8,3), new Vector4(8,3,8,7), new Vector4(8,7,11,7), new Vector4(11,1,11,7), new Vector4(2,1,11,1),
             new Vector4(2,1,2,6), new Vector4(1,6,2,6), new Vector4(1,6,1,11));
 
-        grid.setTexture(0,0, path);
-
         for (int i = 0; i < waypointGO.transform.childCount; i++)
         {
             waypointList[i] = waypointGO.transform.GetChild(i).position;
