@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour {
 
-    Grid grid;
+    public Grid grid;
 
     public GameObject tile, waypointGO;
     public Sprite path, grass;

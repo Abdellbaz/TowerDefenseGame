@@ -52,7 +52,6 @@ public class Minion : MonoBehaviour {
         {
             ydif = -1.0f;
         }
-
         
         if(xdif > -1f && xdif < 1f && ydif > -1f && ydif < 1f)
         {
@@ -76,7 +75,6 @@ public class Minion : MonoBehaviour {
         {
             Destroy(collision.gameObject);
             health -= 33.4f;
-            print(health);
         }
 
         if (health <= 0)

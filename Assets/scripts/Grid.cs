@@ -53,29 +53,38 @@ public class Grid {
     {
         grid_raster[x, y].getObject().GetComponent<SpriteRenderer>().sprite = sprite;
     }
-    
-    public void FillRect(int Xstart, int Ystart, int Xend, int Yend, Sprite sprite)
-    {
-        for(int i = 0; i < grid_raster.GetLength(1); i++)
-            for(int j = 0; j < grid_raster.GetLength(0); j++)
-            {
-               if(j >= Xstart && j <= Xend && i >= Ystart && i <= Yend)
-                {
-                    grid_raster[j, i].getObject().GetComponent<SpriteRenderer>().sprite = sprite;
-                }
-            }
-    }
 
-    public void FillRect(Vector2 begin, Vector2 end, Sprite sprite)
+    int number = 0;
+    public bool clickOnSprite(Sprite sprite)
     {
-        for (int i = 0; i < grid_raster.GetLength(1); i++)
-            for (int j = 0; j < grid_raster.GetLength(0); j++)
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        for (int i = 0; i < height; i++)
+        {
+            for(int j = 0; j < width; j++)
             {
-                if (j >= begin.x && j <= end.x && i >= begin.y && i <= end.y)
+                float x = grid_raster[j,i].getObject().transform.position.x;
+                float y = grid_raster[j, i].getObject().transform.position.y;
+                float xWidth = grid_raster[j, i].getObject().transform.position.x + getTile(j, i).getDimensions().x;
+                float yWidth = grid_raster[j, i].getObject().transform.position.x + getTile(j, i).getDimensions().y;
+
+
+                if (mousePos.x > x && mousePos.x < x + xWidth && mousePos.y > y && mousePos.y < y + yWidth)
                 {
-                    grid_raster[j, i].getObject().GetComponent<SpriteRenderer>().sprite = sprite;
+                    MonoBehaviour.print("SPRITE DETECTED: " + grid_raster[j, i].getObject().GetComponent<SpriteRenderer>().sprite.name);
+                    if (grid_raster[j, i].getObject().GetComponent<SpriteRenderer>().sprite.name == sprite.name)
+                    {
+                        number++;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
             }
+        }
+        return false;
     }
     
     /*Use Vector4's for begin x/y and end x/y*/

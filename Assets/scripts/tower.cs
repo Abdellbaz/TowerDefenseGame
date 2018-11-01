@@ -8,13 +8,19 @@ public class tower : MonoBehaviour {
     public GameObject bullet;
     public float BulletSpeed = 6;
     public float FireRate = 0.5f;
+    public float radius = 0.5f;
 
     Vector2 direction;
     bool shooting = false;
     float shootingTimer;
 
-	// Update is called once per frame
-	void Update () {
+    private void Start()
+    {
+        GetComponent<CircleCollider2D>().radius = radius;
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         if (GetComponent<Place_Tower>().isReady)
         {
@@ -24,7 +30,6 @@ public class tower : MonoBehaviour {
                 currentMFT = 10.0f;
                 currentPRGS = 0;
             }
-
 
             if ((shooting) && (minion != null))
             {
