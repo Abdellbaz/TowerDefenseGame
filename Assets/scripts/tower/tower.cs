@@ -22,6 +22,8 @@ public class tower : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
+        print(transform.right);
+
         if (GetComponent<Place_Tower>().isReady)
         {
 

@@ -13,10 +13,12 @@ public class Minion : MonoBehaviour {
     public Vector2 posFromTarget;
     public float magFromTarget = 0;
     Vector2 movement;
+    Vector2[] waypointList;
 
     private void Start()
     {
         GridManager = GameObject.FindGameObjectWithTag("GridManager");
+        waypointList = GridManager.GetComponent<GridManager>().waypointList;
     }
 
     float timer;
@@ -27,9 +29,9 @@ public class Minion : MonoBehaviour {
         timer += Time.deltaTime;
 
         Vector2 destination = new Vector2();
-        if (GridManager.GetComponent<GridManager>().waypointList.Length >= progress)
+        if (waypointList.Length >= progress)
         {
-            destination = GridManager.GetComponent<GridManager>().waypointList[progress];
+            destination = waypointList[progress];
         }
 
         float xdif = destination.x - transform.position.x;
