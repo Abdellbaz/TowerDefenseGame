@@ -81,7 +81,7 @@ public class Minion : MonoBehaviour {
 
         if (health <= 0)
         {
-            GameObject.FindGameObjectWithTag("currency").GetComponent<money>().currency += 5;
+            GameObject.FindGameObjectWithTag("currency").GetComponent<Shop_elements>().currency += 5;
             Destroy(gameObject);
         }
     }

@@ -38,11 +38,11 @@ GameObject:
   - component: {fileID: 4006703743921934}
   - component: {fileID: 212778513153001356}
   - component: {fileID: 58788658821154248}
-  - component: {fileID: 114162228112432894}
   - component: {fileID: 50821730678507958}
-  - component: {fileID: 114455239312141466}
+  - component: {fileID: 114841667881644846}
+  - component: {fileID: 114168157316890184}
   m_Layer: 0
-  m_Name: newTower
+  m_Name: Soldier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,8 +129,8 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.010492325, y: -0.006512642}
   serializedVersion: 2
-  m_Radius: 4.334506
---- !u!114 &114162228112432894
+  m_Radius: 4.5
+--- !u!114 &114168157316890184
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,8 +144,8 @@ MonoBehaviour:
   bullet: {fileID: 1660092016427596, guid: 762422184f47828448b96640f3f8d4b6, type: 2}
   BulletSpeed: 6
   FireRate: 0.5
-  radius: 4.334506
---- !u!114 &114455239312141466
+  radius: 4.5
+--- !u!114 &114841667881644846
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}

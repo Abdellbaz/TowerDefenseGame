@@ -10,6 +10,8 @@ TagManager:
   - GridManager
   - currency
   - tankshell
+  - Tower_category
+  - Wave_category
   layers:
   - Default
   - TransparentFX

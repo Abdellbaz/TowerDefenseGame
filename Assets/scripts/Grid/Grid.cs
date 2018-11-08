@@ -30,10 +30,12 @@ public class Grid {
 
     public void Display()
     {
+        GameObject parent = new GameObject("Tiles");
         for (int i = 0; i < height; i++)
         {
             for (int j = 0; j < width; j++)
             {
+                grid_raster[j, i].getObject().transform.parent = parent.transform;
                 grid_raster[j, i].getObject().SetActive(true);
             }
         }

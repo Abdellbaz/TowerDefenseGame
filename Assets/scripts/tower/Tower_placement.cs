@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Place_Tower : MonoBehaviour {
+public class Tower_placement : MonoBehaviour
+{
 
     Vector3 pos;
     SpriteRenderer sprtr;
@@ -17,7 +18,8 @@ public class Place_Tower : MonoBehaviour {
     public Sprite path, mySprite;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         sprtr = GetComponent<SpriteRenderer>();
@@ -31,7 +33,8 @@ public class Place_Tower : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
 
         if (Input.GetMouseButton(0) && !hoverMouseOver(path) && !moreSpritesThan(3))
         {
@@ -41,7 +44,7 @@ public class Place_Tower : MonoBehaviour {
             isReady = true;
         }
 
-        if(!isReady)
+        if (!isReady)
         {
             pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = transform.position.z;
@@ -62,19 +65,19 @@ public class Place_Tower : MonoBehaviour {
 
     bool hoverMouseOver(Sprite sprite)
     {
-            RaycastHit2D[] hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity);
 
-            for (int i = 0; i < hits.Length; i++)
+        for (int i = 0; i < hits.Length; i++)
+        {
+            if (hits[i].collider != null)
             {
-                if (hits[i].collider != null)
+                if (hits[i].collider.GetComponent<SpriteRenderer>().sprite == sprite)
                 {
-                    if (hits[i].collider.GetComponent<SpriteRenderer>().sprite == sprite)
-                    {
-                        print("Path detected: " + hits[i].collider.name);
-                        return true;
-                    }
+                    print("Path detected: " + hits[i].collider.name);
+                    return true;
                 }
             }
+        }
         return false;
     }
 
@@ -83,7 +86,7 @@ public class Place_Tower : MonoBehaviour {
         RaycastHit2D[] hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity);
 
         print(hits.Length);
-        if(hits.Length >= number)
+        if (hits.Length >= number)
         {
             return true;
         }
@@ -95,12 +98,12 @@ public class Place_Tower : MonoBehaviour {
 
     private void OnMouseEnter()
     {
-       mouseHover = true;
+        mouseHover = true;
     }
 
     private void OnMouseExit()
     {
-       mouseHover = false;
+        mouseHover = false;
     }
 }
 

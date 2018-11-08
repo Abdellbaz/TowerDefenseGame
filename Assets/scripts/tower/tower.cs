@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class tower : MonoBehaviour {
+public class Tower : MonoBehaviour {
 
     GameObject minion;
     public GameObject bullet;
@@ -22,9 +22,7 @@ public class tower : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        print(transform.right);
-
-        if (GetComponent<Place_Tower>().isReady)
+        if (GetComponent<Tower_placement>().isReady)
         {
 
             if (minion == null)
