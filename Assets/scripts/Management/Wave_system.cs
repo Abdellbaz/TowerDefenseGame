@@ -4,41 +4,29 @@ using UnityEngine;
 
 public class Wave_system {
 
-    Wave[] waveList;
-    public int currentWave = 0;
-    public bool ready = true;
+    private Wave[] waveList;
+    internal uint currentWave = 0;
+    internal bool ready = true;
 
     public Wave_system(int number_of_waves, GameObject defaultMinionType)
     {
         waveList = new Wave[number_of_waves];
 
-        GameObject parent = new GameObject("Running_waves");
-
         //Default wave/minion configuration
         for(uint i = 0; i < number_of_waves; i++)
         {
-            waveList[i] = new Wave(defaultMinionType, 5, 2.0f);
+            waveList[i] = new Wave(defaultMinionType, 5);
         }
     }
 
-    public Wave_system(int number_of_waves, GameObject defaultMinionType, int default_number_of_minions, float default_spawn_time)
+    public Wave_system(int number_of_waves, GameObject defaultMinionType, int default_number_of_minions)
     {
         waveList = new Wave[number_of_waves];
 
         //Default wave/minion configuration
         for (uint i = 0; i < number_of_waves; i++)
         {
-            waveList[i] = new Wave(defaultMinionType, default_number_of_minions, default_spawn_time);
-        }
-    }
-
-    public void updateWave()
-    {
-        if (currentWave < waveList.Length && ready && waveList[currentWave].isDone())
-        {
-            waveList[currentWave].intialize();
-            currentWave++;
-            ready = false;
+            waveList[i] = new Wave(defaultMinionType, default_number_of_minions);
         }
     }
 
@@ -62,12 +50,10 @@ public class Wave_system {
 public class Wave
 {
 
-    GameObject[] enemyList;
-    GameObject[] parentList;
-    GameObject parent;
-    public float spawn_time;
+    private GameObject[] enemyList, parentList;
+    private GameObject parent;
 
-    public Wave(GameObject default_type, int number_of_minions, float spawn_time)
+    public Wave(GameObject default_type, int number_of_minions)
     {
         enemyList = new GameObject[number_of_minions];
 
@@ -75,8 +61,6 @@ public class Wave
         parent = new GameObject();
         parent.transform.parent = Waves.transform;
         parent.name = "Wave " + Waves.transform.childCount;
-
-        this.spawn_time = spawn_time;
 
         for(uint i = 0; i < enemyList.Length; i++)
         {

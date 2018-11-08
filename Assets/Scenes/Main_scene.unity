@@ -166,14 +166,14 @@ RectTransform:
   m_GameObject: {fileID: 108133485}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.61238, y: 0.61238, z: 0.61238}
+  m_LocalScale: {x: 0.7189954, y: 1.015581, z: 0.7189954}
   m_Children: []
   m_Father: {fileID: 2035187161}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -49.3, y: 0}
+  m_AnchoredPosition: {x: -43, y: -2}
   m_SizeDelta: {x: 148.03, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &108133487
@@ -195,7 +195,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: bd6d3c0e318626243b3702c75b8d5a37, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3478683359cf6a446af57286aa40208f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -500,7 +500,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 11.35
+  orthographic size: 11.97
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -523,7 +523,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.6, y: 10.4, z: -10}
+  m_LocalPosition: {x: 17.6, y: 10.96, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -961,8 +961,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tile: {fileID: 1525438474386004, guid: c465bdd1a32cf3f4a9408612a2e60e77, type: 2}
   waypointGO: {fileID: 1443490101}
-  path: {fileID: 21300000, guid: d0280062685b9024e814c8c0e7862085, type: 3}
-  grass: {fileID: 21300000, guid: f51bf2af8f654094fa5925f49127cc79, type: 3}
+  path: {fileID: 21300000, guid: e6273eca66e5ea849a646b7fbb7479bf, type: 3}
+  grass: {fileID: 21300000, guid: 28485a8feee551a4e81ffacd6ed4ea8f, type: 3}
   waypointList: []
 --- !u!4 &1080566738
 Transform:
@@ -1838,7 +1838,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06959d9538fce00489768792d274cbe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currency: 40
   soldier: {fileID: 1474190471061450, guid: 87ec76a2252f33447a3602116b84809a, type: 2}
   tank: {fileID: 1960699577055810, guid: f6f2ae23937dbad4d91168229a7d5e62, type: 2}
   dollarUI: {fileID: 2044011593}

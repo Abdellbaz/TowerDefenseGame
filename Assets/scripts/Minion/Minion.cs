@@ -2,31 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Minion script
+//Uses manually-placed waypoints to simulate pathfinding
+
 public class Minion : MonoBehaviour {
 
-    public float speed = 20.0f;
-    float health = 100;
+    public float speed;
+    public float health;
+
+    internal uint progress;
+    internal float magnitudeFromTarget;
 
     private GameObject GridManager;
+    private Vector2[] waypointList;
 
-    public int progress = 0;
-    public Vector2 posFromTarget;
-    public float magFromTarget = 0;
-    Vector2 movement;
-    Vector2[] waypointList;
+    private void Awake()
+    {
+        speed = speed == 0 ? 85 : speed;
+        health = health == 0 ? 100 : health;
+        GridManager = GameObject.FindGameObjectWithTag("GridManager");
+    }
 
     private void Start()
     {
-        GridManager = GameObject.FindGameObjectWithTag("GridManager");
         waypointList = GridManager.GetComponent<GridManager>().waypointList;
     }
 
-    float timer;
-
-    // Update is called once per frame
     void FixedUpdate () {
-
-        timer += Time.deltaTime;
 
         Vector2 destination = new Vector2();
         if (waypointList.Length >= progress)
@@ -37,35 +39,23 @@ public class Minion : MonoBehaviour {
         float xdif = destination.x - transform.position.x;
         float ydif = destination.y - transform.position.y;
 
-        if (xdif > 0.0f && xdif > 1.0f)
-        {
-            xdif = 1.0f;
-        }
-        else if (xdif < 0.0f && xdif < -1.0f)
-        {
-            xdif = -1.0f;
-        }
-
-        if (ydif > 0.0f && ydif > 1.0f)
-        {
-            ydif = 1.0f;
-        }
-        else if (ydif < 0.0f && ydif < -1.0f)
-        {
-            ydif = -1.0f;
-        }
+        //Ternary operators > if-statements
+        xdif = xdif > 1.0f ? 1.0f : xdif;
+        xdif = xdif < -1.0f ? -1.0f : xdif;
+        ydif = ydif > 1.0f ? 1.0f : ydif;
+        ydif = ydif < -1.0f ? -1.0f : ydif;
         
         if(xdif > -1f && xdif < 1f && ydif > -1f && ydif < 1f)
         {
-            progress += 1;
+            progress++;
         }
 
-        posFromTarget = new Vector2(destination.x - transform.position.x, destination.y - transform.position.y);
-        magFromTarget = posFromTarget.magnitude;
-
+        Vector2 unitsFromTarget = new Vector2(destination.x - transform.position.x, destination.y - transform.position.y);
+        magnitudeFromTarget = unitsFromTarget.magnitude;
         GetComponent<Rigidbody2D>().velocity = new Vector2(xdif * speed * Time.deltaTime, ydif * speed * Time.deltaTime);
 	}
 
+    //Bullet collision & death
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("bullet"))
@@ -84,6 +74,7 @@ public class Minion : MonoBehaviour {
             GameObject.FindGameObjectWithTag("currency").GetComponent<Shop_elements>().currency += 5;
             Destroy(gameObject);
         }
+
     }
 
 }

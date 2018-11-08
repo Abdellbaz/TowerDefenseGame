@@ -15,7 +15,7 @@ public class Tower_placement : MonoBehaviour
 
     GameObject grid;
 
-    public Sprite path, mySprite;
+    public Sprite path, mySprite, grass;
 
     // Use this for initialization
     void Start()
@@ -36,7 +36,7 @@ public class Tower_placement : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetMouseButton(0) && !hoverMouseOver(path) && !moreSpritesThan(3))
+        if (Input.GetMouseButton(0) && !hoverMouseOver(path))
         {
             sprtr.color = new Color(sprtr.color.r, sprtr.color.g, sprtr.color.b, 1);
             Color radColor = gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color;
@@ -46,10 +46,14 @@ public class Tower_placement : MonoBehaviour
 
         if (!isReady)
         {
-            pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            pos.z = transform.position.z;
-
-            transform.position = pos;
+            RaycastHit2D[] hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity);
+            for (int i = 0; i < hits.Length; i++)
+            {
+                if (hits[i].collider.tag == "tile")
+                {
+                    transform.position = hits[i].collider.transform.position;
+                }
+            }
         }
 
         if (mouseHover)
@@ -73,27 +77,11 @@ public class Tower_placement : MonoBehaviour
             {
                 if (hits[i].collider.GetComponent<SpriteRenderer>().sprite == sprite)
                 {
-                    print("Path detected: " + hits[i].collider.name);
                     return true;
                 }
             }
         }
         return false;
-    }
-
-    bool moreSpritesThan(float number)
-    {
-        RaycastHit2D[] hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity);
-
-        print(hits.Length);
-        if (hits.Length >= number)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 
     private void OnMouseEnter()

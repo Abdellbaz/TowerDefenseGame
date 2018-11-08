@@ -12,6 +12,9 @@ TagManager:
   - tankshell
   - Tower_category
   - Wave_category
+  - tile
+  - range_circle
+  - Tower
   layers:
   - Default
   - TransparentFX

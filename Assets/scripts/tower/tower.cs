@@ -2,63 +2,68 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Tower script
+//Can be assigned to different gameobjects
+//Uses magnitude of direction vector to decide which enemy to fire at.
+//Relies on gameobjects using 'Minion' script
+
 public class Tower : MonoBehaviour {
 
-    GameObject minion;
     public GameObject bullet;
-    public float BulletSpeed = 6;
-    public float FireRate = 0.5f;
-    public float radius = 0.5f;
+    public float BulletSpeed, FireRate, radius;
 
-    Vector2 direction;
-    bool shooting = false;
-    float shootingTimer;
+    private GameObject minion;
+    private Vector2 direction;
+
+    private bool isShooting;
+    private float shooting_cooldown, currentMagnitudeFromTarget = 10;
+    private uint currentProgress = 0;
+
+    private void Awake()
+    {
+        //Assign default value's
+        BulletSpeed = BulletSpeed == 0 ? 6.0f : BulletSpeed;
+        FireRate = FireRate == 0 ? 0.5f : FireRate;
+        radius = radius == 0 ? 4.5f : radius;
+    }
 
     private void Start()
     {
         GetComponent<CircleCollider2D>().radius = radius;
     }
+    
+    void FixedUpdate () {
 
-    // Update is called once per frame
-    void Update () {
+        bool ready_to_shoot = GetComponent<Tower_placement>().isReady;
 
-        if (GetComponent<Tower_placement>().isReady)
+        if (ready_to_shoot && isShooting && minion != null)
         {
-
-            if (minion == null)
-            {
-                currentMFT = 10.0f;
-                currentPRGS = 0;
-            }
-
-            if ((shooting) && (minion != null))
-            {
-                shootingTimer += Time.deltaTime;
-
+                shooting_cooldown += Time.deltaTime;
+                
                 direction = (minion.transform.position - transform.position);
                 transform.right = direction.normalized;
 
-                if (shootingTimer > FireRate)
+                if (shooting_cooldown > FireRate)
                 {
-                    var bul = (GameObject)Instantiate(bullet, (transform.position + (((transform.forward * 3.0f)) + (transform.up * -0.2f)) + (transform.right * 2.15f)), Quaternion.identity);
+                    var bul = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
                     bul.GetComponent<Rigidbody2D>().velocity = direction * BulletSpeed;
-                    shootingTimer = 0.0f;
+                    shooting_cooldown = 0.0f;
                 }
-            }
-
+        }
+        else if(minion == null)
+        {
+            currentMagnitudeFromTarget = 10.0f;  //(current magnitude from target)
+            currentProgress = 0; //(current progress)
         }
     }
 
-    float currentMFT = 10;
-    int currentPRGS = 0;
-
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("minion") && collision.GetComponent<Minion>().magFromTarget < currentMFT && collision.GetComponent<Minion>().progress >= currentPRGS)
+        if (collision.CompareTag("minion") && collision.GetComponent<Minion>().magnitudeFromTarget < currentMagnitudeFromTarget && collision.GetComponent<Minion>().progress >= currentProgress)
         {
             minion = collision.gameObject;
-            shooting = true;
-            currentMFT = collision.GetComponent<Minion>().magFromTarget;
+            isShooting = true;
+            currentMagnitudeFromTarget = collision.GetComponent<Minion>().magnitudeFromTarget;
         }
 
     }
@@ -67,9 +72,9 @@ public class Tower : MonoBehaviour {
     {
         if (collision.gameObject == minion)
         {
-            shooting = false;
-            currentMFT = 10f;
-            currentPRGS = 0;
+            isShooting = false;
+            currentMagnitudeFromTarget = 10f;
+            currentProgress = 0;
         }
     }
 }

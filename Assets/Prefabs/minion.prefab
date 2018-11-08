@@ -76,10 +76,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 745bfb908863d6c4aaae381e41c244c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 85
-  health: 100
-  GridManager: {fileID: 0}
-  progress: 0
+  speed: 0
+  health: 0
 --- !u!212 &212459136525871824
 SpriteRenderer:
   m_ObjectHideFlags: 1
