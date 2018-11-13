@@ -15,7 +15,6 @@ TagManager:
   - tile
   - range_circle
   - Tower
-  - HP
   layers:
   - Default
   - TransparentFX
