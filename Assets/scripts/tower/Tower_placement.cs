@@ -40,6 +40,7 @@ public class Tower_placement : MonoBehaviour
         {
             sprtr.color = new Color(sprtr.color.r, sprtr.color.g, sprtr.color.b, 1);
             Color radColor = gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color;
+            print(gameObject.transform);
             gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().color = new Color(radColor.r, radColor.g, radColor.b, 0);
             isReady = true;
         }
