@@ -1,18 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 //Minion script
 //Uses manually-placed waypoints to simulate pathfinding
 
 public class Minion : MonoBehaviour {
 
-    public float speed;
-    public float health;
+    public float speed,health;
 
     internal uint progress;
     internal float magnitudeFromTarget;
 
+    public Image HPBar;
     private GameObject GridManager;
     private Vector2[] waypointList;
 
@@ -21,14 +21,17 @@ public class Minion : MonoBehaviour {
         speed = speed == 0 ? 85 : speed;
         health = health == 0 ? 100 : health;
         GridManager = GameObject.FindGameObjectWithTag("GridManager");
+        
     }
 
     private void Start()
     {
+        HPBar = transform.GetChild(0).GetChild(0).GetComponent<Image>();
         waypointList = GridManager.GetComponent<GridManager>().waypointList;
     }
 
     void FixedUpdate () {
+        HPBar.fillAmount = health/100f;
 
         Vector2 destination = new Vector2();
         if (waypointList.Length >= progress)

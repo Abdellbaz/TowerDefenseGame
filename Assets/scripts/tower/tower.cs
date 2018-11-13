@@ -38,14 +38,16 @@ public class Tower : MonoBehaviour {
 
         if (ready_to_shoot && isShooting && minion != null)
         {
-                shooting_cooldown += Time.deltaTime;
+            
+            shooting_cooldown += Time.deltaTime;
                 
                 direction = (minion.transform.position - transform.position);
                 transform.right = direction.normalized;
 
-                if (shooting_cooldown > FireRate)
+                if (shooting_cooldown > FireRate && bullet != null)
                 {
-                    var bul = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
+
+                var bul = Instantiate(bullet, transform.position, Quaternion.identity);
                     bul.GetComponent<Rigidbody2D>().velocity = direction * BulletSpeed;
                     shooting_cooldown = 0.0f;
                 }
@@ -59,8 +61,10 @@ public class Tower : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        
         if (collision.CompareTag("minion") && collision.GetComponent<Minion>().magnitudeFromTarget < currentMagnitudeFromTarget && collision.GetComponent<Minion>().progress >= currentProgress)
         {
+           
             minion = collision.gameObject;
             isShooting = true;
             currentMagnitudeFromTarget = collision.GetComponent<Minion>().magnitudeFromTarget;
