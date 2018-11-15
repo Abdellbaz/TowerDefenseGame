@@ -81,7 +81,9 @@ public class Wave
             {
                 if(j >= left && j <= right)
                 {
-                    enemyList[j] = type;
+                    MonoBehaviour.Destroy(enemyList[j]);
+                    enemyList[j] = MonoBehaviour.Instantiate(type, parent.transform);
+                    enemyList[j].SetActive(false);
                 }
             }
         }

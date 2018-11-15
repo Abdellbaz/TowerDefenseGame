@@ -7,12 +7,22 @@ using UnityEngine;
 
 public class Wave_setup : MonoBehaviour {
 
-    public GameObject circling;
+    public GameObject circling, Squaron, Trianglon,Star,Pentagon,Hexagon,Thomas,Jew;
     private Wave_system ws;
-
+    private int count=0;
 	// Use this for initialization
 	void Start () {
-        ws = new Wave_system(5, circling, 7);
+        ws = new Wave_system(6, circling, 3);
+        ws.configureWave(1).setMinions(Squaron, new Vector2(0, 6));
+        ws.configureWave(2).setMinions(Star, new Vector2(0, 6));
+        ws.configureWave(3).setMinions(Pentagon, new Vector2(0, 6));
+        ws.configureWave(4).setMinions(Hexagon, new Vector2(0, 6));
+        ws.configureWave(5).setMinions(Thomas, new Vector2(0, 6));
+        ws.configureWave(6).setMinions(Jew, new Vector2(0, 6));
+
+
+
+
     }
 
     // Update is called once per frame
@@ -22,6 +32,9 @@ public class Wave_setup : MonoBehaviour {
         {
             ws.ready = true;
             ws.nextWave();
+            count++;
+
         }
+    
 	}
 }
