@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f6e014e9c7dec14da921f7b9f08ccb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1303673517939206, guid: a5c38df6ec5f0ed4d85c02a3d48cfa9e, type: 2}
+  bullet: {fileID: 1528615177228416, guid: 9788294efe4bc8b4dbe5e79632fb22fb, type: 2}
   BulletSpeed: 6
   FireRate: 0.75
   radius: 3.59
