@@ -189,8 +189,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 745bfb908863d6c4aaae381e41c244c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  health: 0
+  speed: 110
+  health: 400
   HPBar: {fileID: 114120054558835148}
 --- !u!212 &212895314307892920
 SpriteRenderer:

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Shop_elements : MonoBehaviour {
 
-    internal uint currency = 40;
+    internal uint currency = 100;
     public GameObject soldier, tank;
     public Text dollarUI;
 

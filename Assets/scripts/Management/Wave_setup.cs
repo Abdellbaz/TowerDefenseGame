@@ -12,13 +12,15 @@ public class Wave_setup : MonoBehaviour {
     private int count=0;
 	// Use this for initialization
 	void Start () {
-        ws = new Wave_system(6, circling, 3);
-        ws.configureWave(1).setMinions(Squaron, new Vector2(0, 6));
-        ws.configureWave(2).setMinions(Star, new Vector2(0, 6));
-        ws.configureWave(3).setMinions(Pentagon, new Vector2(0, 6));
-        ws.configureWave(4).setMinions(Hexagon, new Vector2(0, 6));
-        ws.configureWave(5).setMinions(Thomas, new Vector2(0, 6));
-        ws.configureWave(6).setMinions(Jew, new Vector2(0, 6));
+        ws = new Wave_system(8, circling, 11);
+        ws.configureWave(1).setMinions(Squaron, new Vector2(0, 10));
+        ws.configureWave(2).setMinions(Star, new Vector2(0, 10));
+        ws.configureWave(3).setMinions(Pentagon, new Vector2(0, 10));
+        ws.configureWave(4).setMinions(Hexagon, new Vector2(0, 10));
+        ws.configureWave(5).setMinions(Thomas, new Vector2(0, 10));
+        ws.configureWave(6).setMinions(Trianglon, new Vector2(0, 10));
+        ws.configureWave(7).setMinions(Jew, new Vector2(0, 10));
+
 
 
 
